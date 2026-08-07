@@ -3,6 +3,7 @@ backend:
   repo: Vaibhav3054/Navnind # IMPORTANT: Change this to your actual GitHub repo!
   branch: main # Or master depending on your default branch
   use_pkce: true # Enables login without needing a server
+  app_id: Ov23lic3OJIxdUeSB8mN
 
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
