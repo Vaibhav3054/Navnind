@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #FAF9F6;
+  --color-foreground: #111111;
+  --color-secondary-text: #555555;
+  --color-pure-white: #FFFFFF;
+  --color-border: #E9E7E3;
+  --color-accent-gold: #B99149;
+  --color-muted-beige: #F3EFE8;
+
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-playfair);
+  --font-numbers: var(--font-manrope);
+
+  --spacing-section: 120px;
+  --spacing-container: 2rem;
+
+  --width-container-max: 1440px;
+  --width-prose: 65ch;
+}
+
+@utility container-base {
+  max-width: var(--width-container-max);
+  margin-inline: auto;
+  padding-inline: var(--spacing-container);
+}
+
+@utility text-heading {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+@utility text-numbers {
+  font-family: var(--font-numbers);
+  font-variant-numeric: tabular-nums;
+}
+
+@utility bg-blur {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+:root {
+  --background: #FAF9F6;
+  --foreground: #111111;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
