@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: your-github-username/your-repo-name # IMPORTANT: Change this to your actual GitHub repo!
+  repo: Vaibhav3054/Navnind # IMPORTANT: Change this to your actual GitHub repo!
   branch: main # Or master depending on your default branch
   use_pkce: true # Enables login without needing a server
 
