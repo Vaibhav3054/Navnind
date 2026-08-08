@@ -1,23 +1,23 @@
 import { notFound } from "next/navigation";
-import { getProductBySlug, getRelatedProducts, PRODUCTS } from "@/lib/data/products";
+import { getProductBySlug, getRelatedProducts, getAllProducts } from "@/lib/data/products";
 import { ImageGallery } from "@/components/products/image-gallery";
 import { ProductCard } from "@/components/products/product-card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import Link from "next/link";
+import { Metadata } from "next";
 
 // Generate static params for SSG
 export async function generateStaticParams() {
-  return PRODUCTS.map((product) => ({
+  const products = await getAllProducts();
+  return products.map((product) => ({
     slug: product.slug,
   }));
 }
 
-import { Metadata } from "next";
-
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getProductBySlug(slug);
 
   if (!product) {
     return { title: "Product Not Found" };
@@ -44,14 +44,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getProductBySlug(slug);
 
   if (!product) {
     notFound();
   }
 
   const allImages = [product.mainImage, ...product.gallery];
-  const relatedProducts = getRelatedProducts(product.category, product.slug);
+  const relatedProducts = await getRelatedProducts(product.category, product.slug);
 
   return (
     <div className="min-h-screen bg-pure-white pb-32">

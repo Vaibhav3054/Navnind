@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
-import { PRODUCTS } from '@/lib/data/products'
+import { getAllProducts } from '@/lib/data/products'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://navnind.com'
 
   const staticPages = [
@@ -18,7 +18,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === '' ? 1 : 0.8,
   }))
 
-  const productPages = PRODUCTS.map((product) => ({
+  const products = await getAllProducts();
+  const productPages = products.map((product) => ({
     url: `${baseUrl}/products/${product.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,

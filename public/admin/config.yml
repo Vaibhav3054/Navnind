@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: Vaibhav3054/Navnind
-  branch: main
+  branch: master
   use_pkce: true
   app_id: Ov23lic3OJIxdUeSB8mN
 
@@ -9,12 +9,27 @@ media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
 collections:
-  - name: "blog"
-    label: "Blog Posts"
-    folder: "src/content/blog" # Where the markdown files will be saved
+  - name: "products"
+    label: "Products"
+    folder: "src/content/products"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{slug}}"
     fields:
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Category", name: "category", widget: "select", options: ["A4", "Premium", "Royal", "Big Royal", "Registers", "Spiral", "Sketchbook", "Practical"]}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Main Image", name: "mainImage", widget: "image"}
+      - {label: "Gallery", name: "gallery", widget: "list", field: {label: "Image", name: "image", widget: "image"}, required: false}
+      - label: "Specifications"
+        name: "specs"
+        widget: "object"
+        fields:
+          - {label: "Paper Quality", name: "paperQuality", widget: "string"}
+          - {label: "Binding", name: "binding", widget: "string"}
+          - {label: "Sizes", name: "sizes", widget: "string"}
+          - {label: "Applications", name: "applications", widget: "string"}
+          - {label: "Ruling Type", name: "rulingType", widget: "string", required: false}
+          - {label: "Pages", name: "pages", widget: "string", required: false}
+          - {label: "MRP", name: "mrp", widget: "string", required: false}
+          - {label: "Cover", name: "cover", widget: "string", required: false}
+          - {label: "Subjects", name: "subjects", widget: "string", required: false}
