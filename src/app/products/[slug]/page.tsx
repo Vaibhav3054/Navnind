@@ -7,6 +7,8 @@ import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import Link from "next/link";
 import { Metadata } from "next";
 
+export const dynamic = "force-static";
+
 // Generate static params for SSG
 export async function generateStaticParams() {
   const products = await getAllProducts();
