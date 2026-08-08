@@ -2,7 +2,7 @@
 title: A4 Art Piece Edition
 category: A4
 description: .
-mainImage: /images/uploads/ChatGPT Image Jul 31, 2026, 02_57_15 PM.png
+mainImage: /images/uploads/front.webp
 gallery:
   - /images/A4/224_Pages/Product_3/back.webp
 specs:
