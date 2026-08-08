@@ -1,6 +1,4 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
+import productsData from './products.json';
 
 export type Category = "A4" | "Premium" | "Royal" | "Big Royal" | "Registers" | "Spiral" | "Sketchbook" | "Practical" ;
 
@@ -27,33 +25,8 @@ export interface Product {
   specs: ProductSpecs;
 }
 
-const contentDir = path.join(process.cwd(), 'src/content/products');
-
 export async function getAllProducts(): Promise<Product[]> {
-  if (!fs.existsSync(contentDir)) return [];
-  
-  const files = fs.readdirSync(contentDir);
-  
-  const products: Product[] = files
-    .filter(file => file.endsWith('.md'))
-    .map(file => {
-      const filePath = path.join(contentDir, file);
-      const fileContent = fs.readFileSync(filePath, 'utf-8');
-      const { data, content } = matter(fileContent);
-      
-      return {
-        id: file.replace('.md', ''),
-        slug: file.replace('.md', ''),
-        title: data.title || '',
-        category: data.category as Category,
-        description: content || data.description || '',
-        mainImage: data.mainImage || '',
-        gallery: data.gallery ? data.gallery.map((g: any) => g.image || g) : [],
-        specs: data.specs || {},
-      };
-    });
-    
-  return products;
+  return productsData as Product[];
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | undefined> {
